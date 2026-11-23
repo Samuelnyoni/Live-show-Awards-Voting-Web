@@ -1,12 +1,17 @@
 <?php
 declare(strict_types=1);
 
+session_start();
+if (empty($_SESSION['vote_csrf_token'])) {
+    $_SESSION['vote_csrf_token'] = bin2hex(random_bytes(32));
+}
+
 require_once __DIR__ . '/../config/database.php';
 
 $pdo = getDatabaseConnection();
 
 $categoryQuery = $pdo->prepare(
-    'SELECT id, title, description FROM categories WHERE slug = :slug LIMIT 1'
+    'SELECT id, title, description, is_open FROM categories WHERE slug = :slug LIMIT 1'
 );
 $categoryQuery->execute(['slug' => 'artist-of-year']);
 $category = $categoryQuery->fetch();
@@ -76,7 +81,10 @@ function escapeOutput(?string $value): string
         .nominee-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
         .nominee-initial { color: #a80d26; font-size: clamp(48px, 9vw, 76px); font-weight: 800; }
         .nominee-info { padding: 16px 12px; text-align: center; }
-        .nominee-info h3 { margin: 0; font-size: 15px; font-weight: 700; }
+        .nominee-info h3 { margin: 0 0 13px; font-size: 15px; font-weight: 700; }
+        .vote-button { width: 100%; padding: 11px 12px; border: 0; color: #fff; background: var(--red); font-size: 12px; font-weight: 700; cursor: pointer; }
+        .vote-button:disabled { background: #999; cursor: not-allowed; }
+        .vote-message { margin: 0 0 22px; padding: 13px 16px; border-left: 4px solid var(--gold); background: #faf7ef; color: #5e5237; font-size: 13px; line-height: 1.6; }
         .empty-state { padding: 34px 20px; border: 1px solid #eee; color: var(--muted); text-align: center; font-size: 14px; }
         .site-footer { padding: 20px; color: #bbb; background: #171717; text-align: center; font-size: 11px; }
         @media (min-width: 650px) {
@@ -113,6 +121,20 @@ function escapeOutput(?string $value): string
         </section>
 
         <section class="voting-content">
+            <?php
+            $voteMessages = [
+                'success' => 'Your vote has been recorded. Thank you for participating.',
+                'duplicate' => 'A vote from this internet connection has already been recorded in this category.',
+                'closed' => 'Voting for this category is not open yet.',
+                'invalid' => 'We could not validate that vote. Please try again.',
+                'unavailable' => 'We could not process your vote right now. Please try again later.',
+            ];
+            $voteStatus = $_GET['vote'] ?? '';
+            if (is_string($voteStatus) && isset($voteMessages[$voteStatus])):
+            ?>
+                <div class="vote-message" role="status"><?php echo escapeOutput($voteMessages[$voteStatus]); ?></div>
+            <?php endif; ?>
+
             <div class="section-top">
                 <h2>Meet the Nominees</h2>
                 <span class="nominee-count"><?php echo count($nominees); ?> Nominees</span>
@@ -131,6 +153,14 @@ function escapeOutput(?string $value): string
                             </div>
                             <div class="nominee-info">
                                 <h3><?php echo escapeOutput($nominee['name']); ?></h3>
+                                <form method="post" action="../vote.php">
+                                    <input type="hidden" name="csrf_token" value="<?php echo escapeOutput($_SESSION['vote_csrf_token']); ?>">
+                                    <input type="hidden" name="category_slug" value="artist-of-year">
+                                    <input type="hidden" name="nominee_id" value="<?php echo (int) $nominee['id']; ?>">
+                                    <button class="vote-button" type="submit" <?php echo (int) $category['is_open'] === 1 ? '' : 'disabled'; ?>>
+                                        <?php echo (int) $category['is_open'] === 1 ? 'VOTE FOR THIS NOMINEE' : 'VOTING NOT OPEN'; ?>
+                                    </button>
+                                </form>
                             </div>
                         </article>
                     <?php endforeach; ?>
