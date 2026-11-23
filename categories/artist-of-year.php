@@ -22,10 +22,28 @@ if (!$category) {
 }
 
 $nomineeQuery = $pdo->prepare(
-    'SELECT id, name, photo FROM nominees WHERE category_id = :category_id ORDER BY display_order ASC, name ASC'
+    'SELECT n.id, n.name, n.photo, COUNT(v.id) AS vote_count
+     FROM nominees n
+     LEFT JOIN votes v ON v.nominee_id = n.id AND v.category_id = n.category_id
+     WHERE n.category_id = :category_id
+     GROUP BY n.id, n.name, n.photo, n.display_order
+     ORDER BY n.display_order ASC, n.name ASC'
 );
 $nomineeQuery->execute(['category_id' => $category['id']]);
 $nominees = $nomineeQuery->fetchAll();
+
+$totalVotes = 0;
+foreach ($nominees as $nominee) {
+    $totalVotes += (int) $nominee['vote_count'];
+}
+
+foreach ($nominees as &$nominee) {
+    $nominee['vote_count'] = (int) $nominee['vote_count'];
+    $nominee['vote_percentage'] = $totalVotes > 0
+        ? ($nominee['vote_count'] / $totalVotes) * 100
+        : 0;
+}
+unset($nominee);
 
 function escapeOutput(?string $value): string
 {
@@ -82,6 +100,11 @@ function escapeOutput(?string $value): string
         .nominee-initial { color: #a80d26; font-size: clamp(48px, 9vw, 76px); font-weight: 800; }
         .nominee-info { padding: 16px 12px; text-align: center; }
         .nominee-info h3 { margin: 0 0 13px; font-size: 15px; font-weight: 700; }
+        .nominee-stats { margin: 0 0 14px; text-align: left; }
+        .nominee-stats-top { display: flex; justify-content: space-between; gap: 8px; margin-bottom: 7px; color: var(--muted); font-size: 10px; }
+        .nominee-stats-top strong { color: var(--ink); font-size: 11px; }
+        .vote-progress { height: 6px; overflow: hidden; background: #ededed; }
+        .vote-progress span { display: block; height: 100%; background: linear-gradient(90deg, var(--red), var(--gold)); }
         .vote-button { width: 100%; padding: 11px 12px; border: 0; color: #fff; background: var(--red); font-size: 12px; font-weight: 700; cursor: pointer; }
         .vote-button:disabled { background: #999; cursor: not-allowed; }
         .vote-message { margin: 0 0 22px; padding: 13px 16px; border-left: 4px solid var(--gold); background: #faf7ef; color: #5e5237; font-size: 13px; line-height: 1.6; }
@@ -153,6 +176,18 @@ function escapeOutput(?string $value): string
                             </div>
                             <div class="nominee-info">
                                 <h3><?php echo escapeOutput($nominee['name']); ?></h3>
+                                <div class="nominee-stats">
+                                    <div class="nominee-stats-top">
+                                        <strong><?php echo number_format($nominee['vote_count']); ?> votes</strong>
+                                        <span><?php echo number_format($nominee['vote_percentage'], 1); ?>%</span>
+                                    </div>
+                                    <div class="vote-progress" role="progressbar"
+                                         aria-label="<?php echo escapeOutput($nominee['name']); ?> vote share"
+                                         aria-valuemin="0" aria-valuemax="100"
+                                         aria-valuenow="<?php echo number_format($nominee['vote_percentage'], 1, '.', ''); ?>">
+                                        <span style="width:<?php echo number_format($nominee['vote_percentage'], 2, '.', ''); ?>%"></span>
+                                    </div>
+                                </div>
                                 <form method="post" action="../vote.php">
                                     <input type="hidden" name="csrf_token" value="<?php echo escapeOutput($_SESSION['vote_csrf_token']); ?>">
                                     <input type="hidden" name="category_slug" value="artist-of-year">
