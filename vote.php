@@ -5,9 +5,12 @@ session_start();
 
 require_once __DIR__ . '/config/database.php';
 
-function redirectToCategory(string $status): never
+function redirectToCategory(string $status, string $slug = 'artist-of-year'): never
 {
-    header('Location: categories/artist-of-year.php?vote=' . rawurlencode($status), true, 303);
+    if (!preg_match('/^[a-z0-9-]{1,120}$/', $slug)) {
+        $slug = 'artist-of-year';
+    }
+    header('Location: categories/' . $slug . '.php?vote=' . rawurlencode($status), true, 303);
     exit;
 }
 
@@ -28,12 +31,12 @@ $categorySlug = $_POST['category_slug'] ?? '';
 $nomineeId = filter_input(INPUT_POST, 'nominee_id', FILTER_VALIDATE_INT);
 
 if (!is_string($categorySlug) || !preg_match('/^[a-z0-9-]{1,120}$/', $categorySlug) || !$nomineeId || $nomineeId < 1) {
-    redirectToCategory('invalid');
+    redirectToCategory('invalid', $categorySlug);
 }
 
 $ipAddress = $_SERVER['REMOTE_ADDR'] ?? '';
 if (!is_string($ipAddress) || $ipAddress === '') {
-    redirectToCategory('unavailable');
+    redirectToCategory('unavailable', $categorySlug);
 }
 
 $voterHash = hash_hmac('sha256', $ipAddress, VOTING_SECRET);
@@ -48,11 +51,11 @@ try {
     $category = $categoryStatement->fetch();
 
     if (!$category) {
-        redirectToCategory('invalid');
+        redirectToCategory('invalid', $categorySlug);
     }
 
     if ((int) $category['is_open'] !== 1) {
-        redirectToCategory('closed');
+        redirectToCategory('closed', $categorySlug);
     }
 
     $nomineeStatement = $pdo->prepare(
@@ -64,7 +67,7 @@ try {
     ]);
 
     if (!$nomineeStatement->fetch()) {
-        redirectToCategory('invalid');
+        redirectToCategory('invalid', $categorySlug);
     }
 
     $insertVote = $pdo->prepare(
@@ -77,14 +80,14 @@ try {
             'nominee_id' => $nomineeId,
             'voter_hash' => $voterHash,
         ]);
-        redirectToCategory('success');
+        redirectToCategory('success', $categorySlug);
     } catch (PDOException $error) {
         if ($error->getCode() === '23000') {
-            redirectToCategory('duplicate');
+            redirectToCategory('duplicate', $categorySlug);
         }
         throw $error;
     }
 } catch (Throwable $error) {
     error_log('Live Show Awards vote processing error: ' . $error->getMessage());
-    redirectToCategory('unavailable');
+    redirectToCategory('unavailable', $categorySlug);
 }
