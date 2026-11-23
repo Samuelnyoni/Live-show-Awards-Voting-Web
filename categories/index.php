@@ -23,11 +23,15 @@ $categories = [
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <meta name="description" content="Explore the Live Show Awards Malawi voting categories.">
 <title>Voting Categories | Live Show Awards Malawi</title>
 <style>
 :root{--red:#c8102e;--gold:#d7ad45;--ink:#171717;--muted:#686868;--soft:#f5f5f5}
 *{box-sizing:border-box}
+button,input,select,textarea{font:inherit}
 body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--ink);background:#fff}
 a{color:inherit}
 header{min-height:82px;padding:12px clamp(18px,4vw,46px);display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #eee;gap:14px;position:sticky;top:0;z-index:1000;background:#fff}
