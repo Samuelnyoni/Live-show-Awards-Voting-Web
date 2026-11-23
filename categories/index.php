@@ -31,8 +31,8 @@ $categories = [
 body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--ink);background:#fff}
 a{color:inherit}
 header{min-height:76px;padding:14px clamp(18px,4vw,46px);display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #eee}
-.brand{text-decoration:none;color:var(--red);font-size:15px;font-weight:900;letter-spacing:1px;text-transform:uppercase}
-.brand small{display:block;color:#777;font-size:10px;letter-spacing:2px;margin-top:4px}
+.brand{display:flex;align-items:center;text-decoration:none}
+.brand img{display:block;width:58px;height:58px;object-fit:contain}
 .home-link{font-size:13px;font-weight:700;text-decoration:none}
 main{max-width:1120px;margin:auto;padding:38px 20px 60px}
 .heading{text-align:center;margin:0 auto 30px;max-width:650px}
@@ -40,22 +40,20 @@ main{max-width:1120px;margin:auto;padding:38px 20px 60px}
 h1{font-size:clamp(30px,5vw,46px);margin:10px 0}
 .heading p{color:var(--muted);font-size:14px;line-height:1.6;margin:0}
 .category-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
-.category{min-height:126px;padding:19px 16px;border:1px solid #e8e8e8;background:#fff;display:flex;flex-direction:column;justify-content:space-between;gap:15px;text-decoration:none;transition:border-color .2s,transform .2s}
+.category{padding:10px;border:1px solid #e8e8e8;background:#fff;display:flex;flex-direction:column;gap:12px;text-decoration:none;transition:border-color .2s,transform .2s}
 .category:hover{border-color:var(--gold);transform:translateY(-2px)}
+.category-image{width:100%;aspect-ratio:1/1;background:#171717 url("../assets/images/logobg.jpg") center/cover no-repeat;overflow:hidden}
 .category h2{font-size:16px;margin:0 0 7px}
 .category p{font-size:12px;color:var(--muted);line-height:1.5;margin:0}
 .category span{font-size:11px;font-weight:800;color:var(--red);letter-spacing:.6px}
-.category.disabled{background:var(--soft);cursor:default}
-.category.disabled span{color:#888}
-.notice{margin-top:26px;padding:15px;background:#fff8e8;border-left:3px solid var(--gold);font-size:12px;color:#66552d;line-height:1.6}
 footer{text-align:center;padding:20px;background:#171717;color:#bbb;font-size:11px}
-@media(min-width:700px){.category-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.category{min-height:145px;padding:22px}}
+@media(min-width:700px){.category-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.category{padding:12px}}
 @media(min-width:1000px){.category-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
 </style>
 </head>
 <body>
 <header>
-<a class="brand" href="../index.php">Live Show Awards<small>Malawi</small></a>
+<a class="brand" href="../index.php"><img src="../assets/images/logo.png" alt="Live Show Awards Malawi"></a>
 <a class="home-link" href="../index.php">← Back to Home</a>
 </header>
 <main>
@@ -66,20 +64,12 @@ footer{text-align:center;padding:20px;background:#171717;color:#bbb;font-size:11
 </section>
 <section class="category-grid" aria-label="Award categories">
 <?php foreach ($categories as $category): ?>
-    <?php if ($category["slug"] === "artist-of-year"): ?>
-        <a class="category" href="artist-of-year.php">
-            <div><h2><?php echo htmlspecialchars($category["title"]); ?></h2><p><?php echo htmlspecialchars($category["description"]); ?></p></div>
-            <span>VIEW NOMINEES →</span>
-        </a>
-    <?php else: ?>
-        <div class="category disabled" aria-disabled="true">
-            <div><h2><?php echo htmlspecialchars($category["title"]); ?></h2><p><?php echo htmlspecialchars($category["description"]); ?></p></div>
-            <span>COMING SOON</span>
-        </div>
-    <?php endif; ?>
+    <a class="category" href="<?php echo htmlspecialchars($category["slug"] === "artist-of-year" ? "artist-of-year.php" : $category["slug"] . ".php"); ?>">
+        <div class="category-image" aria-hidden="true"></div>
+        <div><h2><?php echo htmlspecialchars($category["title"]); ?></h2><span>VIEW CATEGORY →</span></div>
+    </a>
 <?php endforeach; ?>
 </section>
-<div class="notice">Voting nominee lists for the remaining categories are being prepared. More categories will become available as their pages are added.</div>
 </main>
 <footer>&copy; <?php echo date('Y'); ?> Live Show Awards Malawi. All rights reserved.</footer>
 </body>
