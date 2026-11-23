@@ -52,7 +52,7 @@ h1{font-size:clamp(30px,5vw,46px);margin:10px 0}
 .category h2{font-size:15px;line-height:1.35;margin:0;font-weight:800}
 .category span{font-size:10px;font-weight:800;color:var(--red);letter-spacing:1px}
 footer{text-align:center;padding:20px;background:#171717;color:#bbb;font-size:11px}
-@media(min-width:700px){.category-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.category{padding:12px}}
+@media(min-width:700px){.category-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}}
 @media(min-width:1000px){.category-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
 </style>
 </head>
