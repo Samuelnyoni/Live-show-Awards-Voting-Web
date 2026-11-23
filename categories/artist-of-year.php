@@ -52,6 +52,9 @@ $nominees = [
             justify-content: space-between;
             background: #fff;
             border-bottom: 1px solid #eee;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
         .brand {
             display: flex;
