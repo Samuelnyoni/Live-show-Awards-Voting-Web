@@ -36,8 +36,9 @@
             justify-content: space-between;
             gap: 20px;
             background: #fff;
-            position: relative;
-            z-index: 5;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
         .brand {
             display: inline-flex;
