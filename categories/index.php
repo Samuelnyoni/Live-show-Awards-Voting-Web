@@ -30,7 +30,7 @@ $categories = [
 *{box-sizing:border-box}
 body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--ink);background:#fff}
 a{color:inherit}
-header{min-height:82px;padding:12px clamp(18px,4vw,46px);display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #eee;gap:14px}
+header{min-height:82px;padding:12px clamp(18px,4vw,46px);display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #eee;gap:14px;position:sticky;top:0;z-index:1000;background:#fff}
 .brand{display:flex;align-items:center;gap:11px;text-decoration:none}
 .brand img{display:block;width:54px;height:54px;object-fit:contain}
 .brand-copy{display:flex;flex-direction:column;gap:4px}
