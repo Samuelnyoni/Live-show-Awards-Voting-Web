@@ -7,6 +7,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <meta name="description" content="Live Show Awards Malawi celebrates outstanding talent and achievement in Malawi's music and entertainment industry.">
     <title>Live Show Awards Malawi</title>
     <style>
@@ -20,12 +23,13 @@
             --soft: #f5f5f5;
         }
         * { box-sizing: border-box; }
+        button, input, select, textarea { font: inherit; }
         html { scroll-behavior: smooth; }
         body {
             margin: 0;
             color: var(--ink);
             background: var(--paper);
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: 'Poppins', sans-serif;
         }
         a { color: inherit; }
         .site-header {
