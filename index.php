@@ -45,19 +45,8 @@
             gap: 12px;
             text-decoration: none;
         }
-        .brand-mark {
-            width: 48px;
-            height: 48px;
-            display: grid;
-            place-items: center;
-            color: var(--gold);
-            border: 2px solid var(--gold);
-            transform: rotate(45deg);
-            font-weight: 900;
-            font-size: 20px;
-        }
-        .brand-mark span { transform: rotate(-45deg); }
-        .brand-copy { display: flex; flex-direction: column; gap: 3px; }
+        .brand-logo { width: 58px; height: 58px; object-fit: contain; display: block; }
+        .brand-copy { display: flex; flex-direction: column; gap: 4px; }
         .brand-copy strong {
             color: var(--red);
             font-size: 14px;
@@ -67,9 +56,10 @@
         .brand-copy small {
             color: #777;
             font-size: 10px;
-            letter-spacing: 2px;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
         }
+        .brand-copy em { color: #999; font-size: 9px; font-style: normal; letter-spacing: .7px; }
         .menu-toggle {
             width: 44px;
             height: 44px;
@@ -183,6 +173,7 @@
             line-height: 1.7;
             font-weight: 500;
         }
+        .vote-action { text-align: center; margin-top: 26px; }
         .vote-button {
             display: inline-block;
             padding: 14px 24px;
@@ -272,10 +263,11 @@
 <body>
     <header class="site-header">
         <a class="brand" href="index.php" aria-label="Live Show Awards Malawi home">
-            <span class="brand-mark"><span>LS</span></span>
+            <img class="brand-logo" src="assets/images/logo.png" alt="Live Show Awards logo">
             <span class="brand-copy">
                 <strong>Live Show Awards</strong>
-                <small>Malawi</small>
+                <small>Salima District, Malawi</small>
+                <em>Celebrating Salima's finest</em>
             </span>
         </a>
 
@@ -286,7 +278,6 @@
         <nav class="main-nav" id="mainNav">
             <a href="index.php">HOME</a>
             <a href="categories/">VOTE NOW</a>
-            <a href="#about">ABOUT</a>
             <a href="#sponsorship">SPONSORSHIP</a>
             <a href="#partners">PARTNERS</a>
             <a href="results/">LIVE RESULTS</a>
@@ -303,14 +294,13 @@
 
         <section class="intro" id="about">
             <div class="intro-inner">
-                <h1>Live Show Awards Malawi</h1>
+                <h1>Live Show Awards<br>Salima District</h1>
                 <p>
-                    Live Show Awards Malawi celebrates outstanding talent, creativity and
-                    achievement in Malawi's music and entertainment industry. The awards
-                    bring audiences and artists together to recognise the people shaping
-                    the sound and culture of Malawi.
+                    Live Show Awards celebrates outstanding talent, creativity and achievement
+                    in Salima District's music and entertainment scene. The awards bring the
+                    community together to recognise the artists and performers shaping our culture.
                 </p>
-                <a class="vote-button" href="categories/">VOTE NOW</a>
+                <div class="vote-action"><a class="vote-button" href="categories/">VOTE NOW</a></div>
             </div>
         </section>
 
@@ -333,7 +323,7 @@
     </main>
 
     <footer class="site-footer">
-        &copy; <?php echo date('Y'); ?> Live Show Awards Malawi. All rights reserved.
+        &copy; <?php echo date('Y'); ?> Live Show Awards · Salima District, Malawi. All rights reserved.
     </footer>
 
     <script>
