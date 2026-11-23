@@ -59,18 +59,7 @@ $nominees = [
             gap: 12px;
             text-decoration: none;
         }
-        .brand-mark {
-            width: 43px;
-            height: 43px;
-            display: grid;
-            place-items: center;
-            border: 2px solid var(--gold);
-            color: var(--gold);
-            font-size: 17px;
-            font-weight: 900;
-            transform: rotate(45deg);
-        }
-        .brand-mark span { transform: rotate(-45deg); }
+        .brand-logo { width: 52px; height: 52px; object-fit: contain; display: block; }
         .brand-copy strong {
             display: block;
             color: var(--red);
@@ -82,10 +71,11 @@ $nominees = [
             display: block;
             margin-top: 3px;
             color: #777;
-            font-size: 10px;
-            letter-spacing: 2px;
+            font-size: 9px;
+            letter-spacing: 1px;
             text-transform: uppercase;
         }
+        .brand-copy em { display:block; margin-top:3px; color:#999; font-size:9px; font-style:normal; }
         .back-link {
             color: var(--red);
             font-size: 13px;
@@ -211,10 +201,11 @@ $nominees = [
 <body>
     <header class="site-header">
         <a class="brand" href="../index.php" aria-label="Live Show Awards Malawi home">
-            <span class="brand-mark"><span>LS</span></span>
+            <img class="brand-logo" src="../assets/images/logo.png" alt="Live Show Awards logo">
             <span class="brand-copy">
                 <strong>Live Show Awards</strong>
-                <small>Malawi</small>
+                <small>Salima District, Malawi</small>
+                <em>Celebrating Salima's finest</em>
             </span>
         </a>
         <a class="back-link" href="../index.php">&larr; Back to Home</a>
@@ -255,7 +246,7 @@ $nominees = [
     </main>
 
     <footer class="site-footer">
-        &copy; <?php echo date('Y'); ?> Live Show Awards Malawi. All rights reserved.
+        &copy; <?php echo date('Y'); ?> Live Show Awards · Salima District, Malawi. All rights reserved.
     </footer>
 </body>
 </html>
