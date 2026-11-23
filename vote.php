@@ -30,7 +30,11 @@ if (!is_string($submittedToken) || !is_string($sessionToken) || $sessionToken ==
 $categorySlug = $_POST['category_slug'] ?? '';
 $nomineeId = filter_input(INPUT_POST, 'nominee_id', FILTER_VALIDATE_INT);
 
-if (!is_string($categorySlug) || !preg_match('/^[a-z0-9-]{1,120}$/', $categorySlug) || !$nomineeId || $nomineeId < 1) {
+if (!is_string($categorySlug) || !preg_match('/^[a-z0-9-]{1,120}$/', $categorySlug)) {
+    redirectToCategory('invalid');
+}
+
+if (!$nomineeId || $nomineeId < 1) {
     redirectToCategory('invalid', $categorySlug);
 }
 
