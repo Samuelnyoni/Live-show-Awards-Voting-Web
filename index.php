@@ -322,9 +322,7 @@
         </section>
     </main>
 
-    <footer class="site-footer">
-        &copy; <?php echo date('Y'); ?> Live Show Awards · Salima District, Malawi. All rights reserved.
-    </footer>
+    <?php include __DIR__ . '/includes/footer.php'; ?>
 
     <script>
         const menuToggle = document.getElementById('menuToggle');
