@@ -319,7 +319,7 @@
                 Put your brand alongside Malawi's creative talent. We welcome organisations
                 and businesses interested in supporting the awards and connecting with our audience.
             </p>
-            <a class="sponsor-link" href="mailto:info@liveshowawards.mw">Enquire About Sponsorship</a>
+            <a class="sponsor-link" href="#sponsorship">Enquire About Sponsorship</a>
         </section>
 
         <section class="partners" id="partners">
