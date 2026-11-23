@@ -239,6 +239,22 @@
             font-size: 13px;
             font-weight: 800;
         }
+        .partner-dijitalx {
+            min-width: 230px;
+            padding: 14px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #102b59;
+            border-color: #102b59;
+        }
+        .partner-dijitalx img {
+            display: block;
+            width: 100%;
+            max-width: 210px;
+            height: 68px;
+            object-fit: contain;
+        }
         .partner span { display: block; margin-top: 5px; color: #888; font-size: 10px; font-weight: 400; }
         .site-footer {
             padding: 20px;
@@ -270,9 +286,8 @@
         <a class="brand" href="index.php" aria-label="Live Show Awards Malawi home">
             <img class="brand-logo" src="assets/images/logo.png" alt="Live Show Awards logo">
             <span class="brand-copy">
-                <strong>Live Show Awards</strong>
-                <small>Salima District, Malawi</small>
-                <em>Celebrating Salima's finest</em>
+                <strong>Live Show Awards</strong>             
+                <em>Celebrating Salima's finest Talents</em>
             </span>
         </a>
 
@@ -299,10 +314,10 @@
 
         <section class="intro" id="about">
             <div class="intro-inner">
-                <h1>Live Show Awards<br>Salima District</h1>
+                <h1>Live Show Awards</h1>
                 <p>
                     Live Show Awards celebrates outstanding talent, creativity and achievement
-                    in Salima District's music and entertainment scene. The awards bring the
+                    in Salima music and entertainment scene. The awards bring the
                     community together to recognise the artists and performers shaping our culture.
                 </p>
                 <div class="vote-action"><a class="vote-button" href="categories/">VOTE NOW</a></div>
@@ -321,7 +336,9 @@
         <section class="partners" id="partners">
             <h2>Our Partners</h2>
             <div class="partner-list">
-                <div class="partner">DIJITALX SYSTEMS<span>Digital and web solutions</span></div>
+                <div class="partner partner-dijitalx">
+                    <img src="assets/images/dxlogo.png" alt="DijitalX Systems">
+                </div>
                 <div class="partner">PARTNER NAME<span>Partner identity to be added</span></div>
             </div>
         </section>
