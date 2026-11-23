@@ -79,6 +79,6 @@ footer{text-align:center;padding:20px;background:#171717;color:#bbb;font-size:11
 <?php endforeach; ?>
 </section>
 </main>
-<footer>&copy; <?php echo date('Y'); ?> Live Show Awards · Salima District, Malawi. All rights reserved.</footer>
+<?php include __DIR__ . '/../includes/footer.php'; ?>
 </body>
 </html>
