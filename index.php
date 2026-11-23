@@ -183,7 +183,7 @@
             line-height: 1.7;
             font-weight: 500;
         }
-        .read-more {
+        .vote-button {
             display: inline-block;
             padding: 14px 24px;
             color: #333;
@@ -193,7 +193,7 @@
             font-size: 14px;
             transition: background .2s ease, transform .2s ease;
         }
-        .read-more:hover { background: #f4e6c4; transform: translateY(-2px); }
+        .vote-button:hover { background: #f4e6c4; transform: translateY(-2px); }
         .support-section {
             padding: 42px clamp(18px, 4vw, 46px);
             text-align: center;
@@ -285,6 +285,7 @@
 
         <nav class="main-nav" id="mainNav">
             <a href="index.php">HOME</a>
+            <a href="categories/">VOTE NOW</a>
             <a href="#about">ABOUT</a>
             <a href="#sponsorship">SPONSORSHIP</a>
             <a href="#partners">PARTNERS</a>
@@ -309,7 +310,7 @@
                     bring audiences and artists together to recognise the people shaping
                     the sound and culture of Malawi.
                 </p>
-                <a class="read-more" href="#sponsorship">Read More</a>
+                <a class="vote-button" href="categories/">VOTE NOW</a>
             </div>
         </section>
 
