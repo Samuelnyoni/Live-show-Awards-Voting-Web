@@ -1,6 +1,6 @@
 <?php
 // Live Show Awards Malawi — homepage
-// This is the first visual version. Voting and live results will be connected later.
+// Homepage for the Live Show Awards voting website.
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <meta name="description" content="Live Show Awards Malawi celebrates outstanding talent and achievement in Malawi's music and entertainment industry.">
+    <meta name="description" content="Live Show Awards celebrates outstanding talent, creativity and achievement in Salima District, Malawi.">
     <title>Live Show Awards Malawi</title>
     <style>
         :root {
@@ -296,7 +296,7 @@
     <main>
         <section class="hero-banner" aria-label="Live Show Awards Malawi">
             <div class="banner-message">
-                <small>Celebrating Malawi's finest</small>
+                <small>Celebrating Salima's finest</small>
                 <strong>Live Show Awards</strong>
             </div>
         </section>
