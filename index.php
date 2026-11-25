@@ -235,15 +235,15 @@
         }
         .partner-logo {
             display: block;
-            width: min(100%, 460px);
-            flex: 1 1 320px;
-            max-width: 460px;
+            width: min(100%, 230px);
+            flex: 0 1 230px;
+            max-width: 230px;
             height: auto;
             object-fit: contain;
         }
         @media (max-width: 520px) {
             .partner-list { flex-direction: column; gap: 18px; }
-            .partner-logo { width: min(100%, 420px); flex: 0 0 auto; }
+            .partner-logo { width: min(100%, 230px); flex: 0 0 auto; }
         }
         .site-footer {
             padding: 20px;
