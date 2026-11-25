@@ -229,33 +229,22 @@
             flex-wrap: wrap;
             justify-content: center;
             align-items: center;
-            gap: 14px;
+            gap: clamp(16px, 3vw, 32px);
+            max-width: 1100px;
+            margin: 0 auto;
         }
-        .partner {
-            min-width: 190px;
-            padding: 16px 22px;
-            border: 1px solid #e4e4e4;
-            background: #fff;
-            font-size: 13px;
-            font-weight: 800;
-        }
-        .partner-dijitalx {
-            min-width: 230px;
-            padding: 14px 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #102b59;
-            border-color: #102b59;
-        }
-        .partner-dijitalx img {
+        .partner-logo {
             display: block;
-            width: 100%;
-            max-width: 210px;
-            height: 68px;
+            width: min(100%, 460px);
+            flex: 1 1 320px;
+            max-width: 460px;
+            height: auto;
             object-fit: contain;
         }
-        .partner span { display: block; margin-top: 5px; color: #888; font-size: 10px; font-weight: 400; }
+        @media (max-width: 520px) {
+            .partner-list { flex-direction: column; gap: 18px; }
+            .partner-logo { width: min(100%, 420px); flex: 0 0 auto; }
+        }
         .site-footer {
             padding: 20px;
             color: #bbb;
@@ -336,10 +325,8 @@
         <section class="partners" id="partners">
             <h2>Our Partners</h2>
             <div class="partner-list">
-                <div class="partner partner-dijitalx">
-                    <img src="assets/images/dxlogo.png" alt="DijitalX Systems">
-                </div>
-                <div class="partner">PARTNER NAME<span>Partner identity to be added</span></div>
+                <img class="partner-logo" src="assets/images/dxlogo.png" alt="DijitalX Systems partner logo">
+                <img class="partner-logo" src="assets/images/dzlogo.png" alt="Dolza Real Properties and Estate Agency partner logo">
             </div>
         </section>
     </main>
