@@ -190,7 +190,7 @@ function escapeOutput(?string $value): string
                                 </div>
                                 <form method="post" action="../vote.php">
                                     <input type="hidden" name="csrf_token" value="<?php echo escapeOutput($_SESSION['vote_csrf_token']); ?>">
-                                    <input type="hidden" name="category_slug" value="artist-of-year">
+                                    <input type="hidden" name="category_slug" value="best-amapiano-artist">
                                     <input type="hidden" name="nominee_id" value="<?php echo (int) $nominee['id']; ?>">
                                     <button class="vote-button" type="submit" <?php echo (int) $category['is_open'] === 1 ? '' : 'disabled'; ?>>
                                         <?php echo (int) $category['is_open'] === 1 ? 'VOTE FOR THIS NOMINEE' : 'VOTING NOT OPEN'; ?>
