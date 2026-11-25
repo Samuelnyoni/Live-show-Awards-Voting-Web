@@ -129,8 +129,7 @@ function escapeOutput(?string $value): string
             <img class="brand-logo" src="../assets/images/logo.png" alt="Live Show Awards logo">
             <span class="brand-copy">
                 <strong>Live Show Awards</strong>
-                <small>Salima District, Malawi</small>
-                <em>Celebrating Salima's finest</em>
+                <em>Celebrating Salima's finest talents</em>
             </span>
         </a>
         <a class="back-link" href="../categories/">&larr; Categories</a>
@@ -138,7 +137,7 @@ function escapeOutput(?string $value): string
 
     <main>
         <section class="category-heading">
-            <p class="eyebrow">Live Show Awards · Salima District</p>
+            <p class="eyebrow">Live Show Awards</p>
             <h1><?php echo escapeOutput($category['title']); ?></h1>
             <p><?php echo escapeOutput($category['description']); ?></p>
         </section>
