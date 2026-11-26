@@ -15,7 +15,10 @@ $categories = [
     ["title" => "Best Music Video", "slug" => "best-music-video", "description" => "Celebrating outstanding music visuals."],
     ["title" => "Best Collaboration", "slug" => "best-collaboration", "description" => "Recognising an exceptional collaboration."],
     ["title" => "Best Live Performer", "slug" => "best-live-performer", "description" => "Celebrating powerful live performances."],
-    ["title" => "Best Duo / Group", "slug" => "best-duo-group", "description" => "Recognising an outstanding duo or group."]
+    ["title" => "Best Duo/Group", "slug" => "best-duo-group", "description" => "Recognising an outstanding duo or group."],
+    ["title" => "Best Graphic Designer", "slug" => "best-graphic-designer", "description" => "Recognising outstanding graphic design."],
+    ["title" => "Best Poet of the Year", "slug" => "best-poet-of-the-year", "description" => "Recognising outstanding poetry."],
+    ["title" => "Best Dancers of the Year", "slug" => "best-dancers-of-the-year", "description" => "Celebrating outstanding dance talent."]
 ];
 ?>
 <!DOCTYPE html>
